@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+
+  <!-- External CSS for styling -->
+  <style>
+    /* Full-page background styling */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: url('ctfbg.jpg'); /* Replace with your image URL */
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* Center the login form container */
+    .login-container {
+      background-color: white; /* White background for the form */
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Adds a slight shadow for effect */
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+    }
+
+    /* Add a logo above the form */
+    .login-logo {
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2; /* Ensures logo is on top */
+    }
+
+    .login-logo img {
+      max-width: 100px; /* Set logo size */
+    }
+
+    .logo-txt {
+      position: absolute;
+      top: 5px; /* Same position as logo */
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(0, 0, 0, 0); /* Very light text */
+      font-size: 20px;
+      z-index: -1; /* Places the text behind the logo */
+    }
+
+    /* Style the input fields with placeholders */
+    input[type="email"], input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+
+    input::placeholder {
+      color: #aaa;
+    }
+
+    /* Style for the submit button */
+    button {
+      background-color: #007BFF;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      width: 100%;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    /* Hover effect for the button */
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Style for the error message */
+    #errorMessage {
+      color: red;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Login form container -->
+  <div class="login-container">
+    <div class="logo-txt">粢粶籿糁粭籿糁粼鰹糂粭粂粭粔籿粯粵粭籾糀粭籿糁粭籿糂粍.统一码腐烂</div>
+
+    <!-- Optional logo -->
+    <div class="login-logo">
+      <img src="logo.png" alt="Logo"> <!-- Replace with your logo image URL -->
+    </div>
+
+    <!-- Login form -->
+    <form id="loginForm">
+      <input type="email" id="email" placeholder="Email" required><br><br>
+      <input type="password" id="password" placeholder="Password" required><br><br>
+      <button type="submit">Login</button>
+    </form>
+
+    <div id="errorMessage" style="color: red;"></div>
+  </div>
+
+  <!-- Load the config and message files -->
+  <script src="./config.js"></script>
+  <script src="./messages.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+  <!-- Firebase Script -->
+  <script>
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    function showSuccessAlert() {
+      Swal.fire({
+        title: '3fu356zb~1kn1v13093971o34a51tr3216i86606l44op4pl5q01ml',
+        text: 'you cracked it',
+        imageUrl: 'flagg.png', // Replace with your image URL
+        imageWidth: 800,
+        imageHeight: 400,
+        imageAlt: 'Success image',
+      });
+    }
+
+    // Login Functionality
+    const loginForm = document.getElementById('loginForm');
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      
+      // Firebase authentication
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+            showSuccessAlert();
+        })
+        .catch((error) => {
+          const errorMessage = document.getElementById('errorMessage');
+          errorMessage.textContent = error.message;
+        });
+    });
+  </script>
+
+</body>
+</html>
